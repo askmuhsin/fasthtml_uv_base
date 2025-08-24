@@ -5,16 +5,32 @@ from fasthtml.common import (
     Form, Input, Label, Ul, Li, 
     Title, Meta, Script, Titled, Container
 )
+from monsterui.core import Theme
+from monsterui.all import Card, Button as UIButton, Alert
 
-app, rt = fast_app()
+app, rt = fast_app(hdrs=Theme.blue.headers())
 
 @rt
 def index():
-    return Titled("FastHTML Demo!", 
-        P("Welcome to your first FastHTML app..."),
+    return Titled("FastHTML + MonsterUI Demo", 
+        Alert("Welcome to FastHTML with MonsterUI styling!", cls="mb-4"),
+        
+        Card(
+            H3("Beautiful Components"),
+            P("MonsterUI provides shadcn-like components for FastHTML:"),
+            Ul(
+                Li("🎨 Tailwind CSS + FrankenUI + DaisyUI"),
+                Li("🎯 Pre-built components (Cards, Buttons, Forms)"),
+                Li("🌈 Built-in themes (blue, slate, gray, etc.)"),
+                Li("✨ Ready to use, no configuration needed")
+            ),
+            cls="mb-4"
+        ),
+        
         Div(
-            P("This demonstrates better structure with containers."),
-            A("Learn more about FastHTML", href="https://fasthtml.dev")
+            UIButton("Primary Button", cls="mr-2"),
+            UIButton("Secondary", variant="outline"),
+            cls="space-x-2"
         )
     )
 
